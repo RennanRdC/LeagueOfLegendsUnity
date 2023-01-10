@@ -6,25 +6,31 @@ using DG.Tweening;
 public class Axe : MonoBehaviour
 {
     [Header("Parameters")]
-    public float RotationSpeed;
-    public float speed;
-    public bool empowered;
-    public bool going = true;
+    [SerializeField] float RotationSpeed;
+    [SerializeField] float speed;
+    [SerializeField] bool empowered;
+    bool going = true;
 
     [Header("Players")]
-    public Actor target;
-    public Draven owner;
+    [SerializeField] Actor target;
+    [SerializeField] Draven owner;
 
     [Header("VFX")]
-    public Transform axe;
-    public GameObject axeSymbol;
-    public GameObject trail;
-    public Transform mySymbol;
+    [SerializeField] Transform axe;
+    [SerializeField] GameObject axeSymbol;
+    [SerializeField] GameObject trail;
+    [SerializeField] Transform mySymbol;
 
 
+	public void Initialize(Actor p_target, Draven p_owner, bool p_empowered)
+	{
+        target = p_target;
+        owner = p_owner;
+        empowered = p_empowered;
+	}
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
         axe.Rotate(Vector3.forward * (RotationSpeed * Time.deltaTime));
 
@@ -51,6 +57,7 @@ public class Axe : MonoBehaviour
             }
         }
     }
+
 
     public IEnumerator Back(float time)
 	{

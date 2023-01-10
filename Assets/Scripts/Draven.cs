@@ -5,8 +5,8 @@ using UnityEngine;
 public class Draven : Actor
 {
     [Header("Axes")]
-    public GameObject axePrefab;
-    public int axes;
+    [SerializeField] GameObject axePrefab;
+    private int axes;
 
     [Header("VFX and SFX")]
     public ParticleSystem catchAxe;
@@ -41,14 +41,15 @@ public class Draven : Actor
             Axe axe = GameObject.Instantiate(axePrefab).GetComponent<Axe>();
             axe.transform.position = getCenter().position;
 
-            axe.target = target;
-            axe.owner = this;
+            bool empowered = false;
 
             if (axes > 0)
             {
-                axe.empowered = true;
+                empowered = true;
                 axes--;
             }
+
+            axe.Initialize(target,this,empowered);
 
         }
     }
@@ -60,7 +61,7 @@ public class Draven : Actor
         if (Vector3.Distance(futurePosition, transform.position) > range)
         {
             Vector3 dir = (nav.destination - transform.position).normalized;
-            futurePosition = transform.position + (dir * (nav.speed * (time-0.45f)));
+            futurePosition = transform.position + (dir * (nav.speed * (time) *0.7f));
         }
 
         if (Vector3.Distance(futurePosition, transform.position) <= 0.15f)

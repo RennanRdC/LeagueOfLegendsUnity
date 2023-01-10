@@ -13,7 +13,7 @@ public class Actor : MonoBehaviour
 
     [Header("Combat")]
     [SerializeField] protected Actor target;
-    public float range;
+    [SerializeField] protected float range;
 
     [Header("VFX and SFX")]
     public ParticleSystem blood;
