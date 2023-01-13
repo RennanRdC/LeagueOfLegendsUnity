@@ -14,6 +14,7 @@ public class EkkoShadow : MonoBehaviour
 		anim = GetComponent<Animator>();
 	}
 
+	//Initialize main ekko's shadow
 	public void Initialize(Ekko p_owner)
 	{
         owner = p_owner;
@@ -22,6 +23,7 @@ public class EkkoShadow : MonoBehaviour
 		transform.rotation = owner.transform.rotation;
 	}
 
+	//Set next shadow destination
     public void SetDestination(PositionRotation p_destiny, float p_tickInterval)
 	{
 		anim.SetFloat("velocity", p_destiny.position != destiny? 1 : 0);
@@ -30,6 +32,8 @@ public class EkkoShadow : MonoBehaviour
 		transform.DORotateQuaternion(p_destiny.rotation, 0.1f);
 	}
 
+
+	//Initialize static shadow vfx
 	public void InitializeStaticShadow(PositionRotation p_destiny)
 	{
 		transform.position = p_destiny.position;

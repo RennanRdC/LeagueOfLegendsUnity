@@ -66,6 +66,7 @@ public class Actor : MonoBehaviour
 		}
     }
 
+    //Set destination of navmesh
     public void SetDestiny(Vector3 destiny)
 	{
         SetTarget(null);
@@ -84,6 +85,7 @@ public class Actor : MonoBehaviour
         nav.destination = destiny;
     }
 
+    //Coroutine made to reset auto attack in animator
     public IEnumerator ResetAuto()
     {
         anim.ResetTrigger("Attack");
@@ -94,12 +96,16 @@ public class Actor : MonoBehaviour
 
         resetAutoCorou = null;
     }
+
+    //Sets the champion's target
     public void SetTarget(Actor targ)
     {
         anim.ResetTrigger("Attack");
         target = targ;
     }
 
+
+    //Checks if the target is within range of the basic attack
     public bool TargetInRange()
     {
         if (target != null)
@@ -108,6 +114,7 @@ public class Actor : MonoBehaviour
         return false;
     }
 
+    //Smooth look to target
     private void SmoothLook(Transform targTransf)
     {
         Vector3 heading = targTransf.position - transform.position;
@@ -118,17 +125,19 @@ public class Actor : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, look, Time.deltaTime * 10);
     }
 
+    //Play champion audio clip
     public void PlayClip(int index)
 	{
         audioSource.PlayOneShot(clips[index]);
 	}
 
-
+    //Gets the center transform from champion. 
     public Transform getCenter()
 	{
         return center;
 	}
 
+    //Skills
     public virtual void QSkill(){}
     public virtual void RSkill(){}
 }

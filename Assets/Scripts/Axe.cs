@@ -21,7 +21,7 @@ public class Axe : MonoBehaviour
     [SerializeField] GameObject trail;
     [SerializeField] Transform mySymbol;
 
-
+    //Initialize Axe parameters
 	public void Initialize(Actor p_target, Draven p_owner, bool p_empowered)
 	{
         target = p_target;
@@ -32,6 +32,7 @@ public class Axe : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+        //Axe rotation
         axe.Rotate(Vector3.forward * (RotationSpeed * Time.deltaTime));
 
         if (going)
@@ -47,8 +48,8 @@ public class Axe : MonoBehaviour
 				{
                     owner.PlayClip(2);
                     owner.PlayClip(3);
+                    //If empowered back to Draven
                     StartCoroutine(Back(1.6f));
-                    trail.SetActive(true);
 				} else
 				{
                     owner.PlayClip(1);
@@ -58,9 +59,11 @@ public class Axe : MonoBehaviour
         }
     }
 
-
+    //Uses Draven GetFuturePosition to return the axe to the predicted position
     public IEnumerator Back(float time)
 	{
+        trail.SetActive(true);
+
         Vector3 futurePosition = owner.GetFuturePosition(time);
 
         mySymbol = GameObject.Instantiate(axeSymbol).transform;
@@ -88,6 +91,8 @@ public class Axe : MonoBehaviour
      
     }
 
+
+    //Used to check if any Draven catch the axe
 	private void OnTriggerEnter(Collider other)
 	{
 		if(!going)

@@ -24,6 +24,7 @@ public class Draven : Actor
         anim.SetFloat("axes", axes);
     }
 
+    //Called when pick axe or activate Q skill
     public void PickAxe()
     {
         if (axes < 2)
@@ -34,6 +35,7 @@ public class Draven : Actor
         }
     }
 
+    //Auto attack projectille
     public void InstantiateAxe()
     {
         if (target)
@@ -54,6 +56,7 @@ public class Draven : Actor
         }
     }
 
+    //Calculates the position where the character will be in X seconds
     public Vector3 GetFuturePosition(float time)
     {
         Vector3 futurePosition = nav.destination;
@@ -73,6 +76,8 @@ public class Draven : Actor
         return futurePosition;
     }
 
+
+    //Skills
     public override void QSkill()
     {
         PickAxe();

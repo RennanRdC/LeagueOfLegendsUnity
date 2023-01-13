@@ -82,6 +82,7 @@ public class Ekko : Actor
     }
 
 
+    //First activation of ult. Happens in game when ultimate is not on cooldown. In this project you can activate it by pressing Q
     void InitializeUltimate()
 	{
         if (ultimateOn) return;
@@ -102,6 +103,7 @@ public class Ekko : Actor
         ultimateCoroutine = StartCoroutine(UltimateTickCoroutine());
 	}
 
+    //Updates ekko path positions when ult is up
     IEnumerator UltimateTickCoroutine()
     {
         float tickInterval = rewindTime / rewindTicks;
@@ -116,6 +118,7 @@ public class Ekko : Actor
         }
     }
 
+    //Ultimate activation
     IEnumerator UseUltimate()
 	{
         ultimateOn = false;
@@ -152,6 +155,7 @@ public class Ekko : Actor
         SetDestiny(shadowPosition);
     }
 
+    //Update all vertices of line renderer based on ekko's path
     void UpdateLineRenderer()
 	{
         float height = getCenter().position.y - transform.position.y;
@@ -169,6 +173,7 @@ public class Ekko : Actor
 
     }
 
+    //Instantiate static shadows upon ultimate activation
     public void StaticShadows()
 	{
         EkkoShadow currentShadowEkko = GameObject.Instantiate(EkkoShadowPrefab).GetComponent<EkkoShadow>();
