@@ -17,6 +17,7 @@ public class Actor : MonoBehaviour
 
     [Header("VFX and SFX")]
     public ParticleSystem blood;
+    public ParticleSystem spark;
     public List<AudioClip> clips;
 
     [Header("Coroutines")]
@@ -129,4 +130,5 @@ public class Actor : MonoBehaviour
 	}
 
     public virtual void QSkill(){}
+    public virtual void RSkill(){}
 }

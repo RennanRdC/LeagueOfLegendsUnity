@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
 			actor.QSkill();
 		}
 
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			actor.RSkill();
+		}
+
 		if (Input.GetKeyDown(KeyCode.S))
 		{
 			actor.SetTarget(null);
